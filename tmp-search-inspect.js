@@ -1,0 +1,21 @@
+const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://opensource-demo.orangehrmlive.com/');
+  await page.getByPlaceholder('Username').fill('Admin');
+  await page.getByPlaceholder('Password').fill('admin123');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('link', { name: 'Admin' }).click();
+  await page.waitForSelector('.oxd-table');
+  await page.locator('.oxd-form').locator('input').first().fill('doesnotexist123456');
+  await page.getByRole('button', { name: 'Search' }).click();
+  await page.waitForTimeout(2000);
+  const html = await page.locator('.oxd-table').innerHTML();
+  console.log('TABLE HTML:\n', html);
+  const spanNodes = await page.locator('span:has-text("No Records Found")').evaluateAll(nodes => nodes.map(n => ({outerHTML: n.outerHTML, className: n.className, text: n.textContent})));
+  console.log('SPAN Nodes:', JSON.stringify(spanNodes, null, 2));
+  const pNodes = await page.locator('p:has-text("No Records Found")').evaluateAll(nodes => nodes.map(n => ({outerHTML: n.outerHTML, className: n.className, text: n.textContent})));
+  console.log('P Nodes:', JSON.stringify(pNodes, null, 2));
+  await browser.close();
+})();

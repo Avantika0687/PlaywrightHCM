@@ -1,0 +1,21 @@
+{
+  "name": "hrmsystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@azure/identity": "^4.13.1",
+    "@azure/playwright": "^1.1.6",
+    "@playwright/test": "^1.61.0",
+    "@types/node": "^25.9.3"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^13.0.0",
+    "dotenv": "^17.4.2"
+  }
+}
