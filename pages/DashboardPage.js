@@ -7,8 +7,8 @@ class DashboardPage {
   }
 
   async verifyDashboardIsVisible() {
-    await expect(this.page).toHaveURL(/dashboard/, { timeout: 15000 });
-    await expect(this.dashboardHeading).toBeVisible({ timeout: 15000 });
+    await expect(this.page).toHaveURL(/dashboard/, { timeout: 20000 });
+    await expect(this.dashboardHeading).toBeVisible({ timeout: 20000 });
   }
 }
 

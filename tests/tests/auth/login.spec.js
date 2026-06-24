@@ -1,7 +1,8 @@
 const { test } = require('@playwright/test');
 const { LoginPage } = require('../../../pages/LoginPage');
 const { DashboardPage } = require('../../../pages/DashboardPage');
-const {logindata} = require('../../../test-data/loginData');
+const { logindata } = require('../../../test-data/loginData');
+
 let loginPage;
 let dashboardPage;
 
@@ -11,13 +12,12 @@ test.beforeEach(async ({ page }) => {
   await loginPage.openLoginPage();
 });
 
-test('valid user should login successfully', async ({}) => {
+test('valid user should login successfully', async () => {
   await loginPage.login(logindata.validUser.username, logindata.validUser.password);
   await dashboardPage.verifyDashboardIsVisible();
 });
-//Invalid Login
-test('invalid user should see login error message', async ({}) => {
-  await loginPage.login(logindata.invalidUser.username, logindata.invalidUser.password);  
+
+test('invalid user should see login error message', async () => {
+  await loginPage.login(logindata.invalidUser.username, logindata.invalidUser.password);
   await loginPage.verifyInvalidCredentialsMessage();
-  
 });
