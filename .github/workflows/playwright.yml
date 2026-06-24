@@ -16,6 +16,7 @@ jobs:
       ORANGE_PASSWORD: ${{ secrets.ORANGE_PASSWORD }}
       ORANGE_INVALIDUSERNAME: ${{ secrets.ORANGE_INVALIDUSERNAME }}
       ORANGE_INVALIDPASSWORD: ${{ secrets.ORANGE_INVALIDPASSWORD }}
+      PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
 
     steps:
       - uses: actions/checkout@v4
@@ -34,8 +35,6 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-        env:
-          PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
 
       - name: Run Playwright tests
         run: npx playwright test --config=playwright.service.config.js --workers=2
